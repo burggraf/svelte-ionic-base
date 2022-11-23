@@ -6,11 +6,18 @@ node_modules
 .env
 .env.*
 !.env.example
+
+# who still uses firebase?
 /.firebase
 .firebaserc
+firebase.json
+
 .npmrc
 .prettierignore
 .prettierrc
 .eslintignore
 .eslintrc.cjs
-firebase.json 
+
+# package managers
+package-lock.json
+bun.lockb
