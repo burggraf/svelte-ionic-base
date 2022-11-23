@@ -6,7 +6,7 @@ module.exports = {
 	ignorePatterns: ['*.cjs'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	settings: {
-		'svelte3/typescript': () => require('typescript')
+		'svelte3/typescript': () => require('typescript'),
 	}, 
 	parserOptions: {
 		sourceType: 'module',
@@ -16,5 +16,9 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
+	},
+	rules: {
+		'jsx-a11y/click-events-have-key-events': 'off',
+		'a11y/click-events-have-key-events': 'off'
 	}
 };
