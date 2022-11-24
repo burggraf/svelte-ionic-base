@@ -20,63 +20,10 @@ const pwaManifest = {
     ]
 }
 
-const componentList = [
-    'Accordion',
-    'Actionsheet',
-    'Alert',
-    'Animations',
-    'Avatar',
-    'Badge',
-    'Breadcrumb',
-    'Button',
-    'Card',
-    'Checkbox',
-    'Chip',
-    'Controllers',
-    'Datetime',
-    'Fab',
-    'Gesture',
-    'Grid',
-    'Icon',
-    'Infinitescroll',
-    'Inputs',
-    'Item',
-    'List',
-    'Loading',
-    'Modal',
-    'Nav',
-    'Note',
-    'Page',
-    'Picker',
-    'Platform',
-    'Popover',
-    'ProgressBar',
-    'Radio',
-    'Range',
-    'Refresher',
-    'Reorder',
-    'Searchbar',
-    'Segment',
-    'Select',
-    'Skeleton',
-    'Slides',
-    'Spinner',
-    'Splash',
-    'SvelteAnimate',
-    'SvelteSpring',
-    'SvelteTransition',
-    'SvelteTweened',
-    'tabs',
-    'Text',
-    'Thumbnails',
-    'Toast',
-    'Toggle',
-    'Toolbar'
-].map(item => { return `assets/src/components/${item}/*` });
 
 const ionicSvelteDirectories = [
     'assets/json/*', 'assets/img/*', 'assets/img/slides/*',
-    'assets/img/ionic/*', 'assets/src/ionic-docs/api/*', ...componentList]
+    'assets/img/ionic/*']
 
 const pwaConfiguration = {
     srcDir: './build',

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { currentUser } from '$stores/user.store'
 
 	import { pwaBeforeInstallPrompt, canInstall } from '$lib/services/pwa';
 
@@ -14,99 +16,40 @@
 
 	export let side = 'start';
 
-	const getRandomColor = () => {
-		const items = [
-			'secondary',
-			'primary',
-			'danger',
-			'warning',
-			'dark',
-			'medium',
-			'success',
-			'tertiary'
-		];
-		return items[Math.floor(Math.random() * items.length)];
-	};
-
 	// this is unfortunately needed in order to have the menuController API function properly
 	onMount(() => {
 		registerMenu('mainmenu');
 	});
 
-	const componentList = [
-		'Accordion',
-		'Actionsheet',
-		'Alert',
-		'Animations',
-		'Avatar',
-		'Badge',
-		'Breadcrumb',
-		'Button',
-		'Card',
-		'Checkbox',
-		'Chip',
-		'Controllers',
-		'Datetime',
-		'Fab',
-		'Gesture',
-		'Grid',
-		'Icon',
-		'Infinitescroll',
-		'Inputs',
-		'Item',
-		'List',
-		'Loading',
-		'Modal',
-		'Nav',
-		'Note',
-		'Page',
-		'Picker',
-		'Platform',
-		'Popover',
-		'ProgressBar',
-		'Radio',
-		'Range',
-		'Refresher',
-		'Reorder',
-		'Searchbar',
-		'Segment',
-		'Select',
-		'Skeleton',
-		'Slides',
-		'Spinner',
-		'Splash',
-		'SvelteAnimate',
-		'SvelteSpring',
-		'SvelteTransition',
-		'SvelteTweened',
-		'Tabs',
-		'Text',
-		'Thumbnails',
-		'Toast',
-		'Toggle',
-		'Toolbar'
-	].sort();
+	const appPages: Array<{ title: string, url: string; requireLogin: boolean; icon: any }> = [
+		{ title: 'Calendar', url: '/calendar', icon: allIonicIcons.calendarOutline, requireLogin: false },
+		{ title: 'Charts', url: '/chart', icon: allIonicIcons.barChartOutline, requireLogin: false },
+		{ title: 'Settings', url: '/settings', icon: allIonicIcons.settingsOutline, requireLogin: false },
+		{ title: 'Info', url: '/info', icon: allIonicIcons.informationCircle, requireLogin: false },
+	]
 
-	let menuItems: Array<{ url: string; label: string; icon: any }> = componentList.map(
-		(componentName) => {
-			const url =
-				componentName !== 'Tabs' ? `/components/${componentName}` : `/components/tabs/[tab]`;
-			return {
-				url,
-				label: componentName,
-				icon: allIonicIcons['home']
-			};
+
+	let menuItems: Array<{ url: string; label: string; icon: any }> = [
+		{
+			label: 'Home',
+			icon: allIonicIcons.home,
+			url: '/'
+		},
+		{
+			label: 'Components',
+			icon: allIonicIcons.star,
+			url: '/components'
 		}
-	);
+	];
 
 	// Randomize the icons
-	const icons = Object.keys(allIonicIcons);
-	menuItems.map((menuItem) => {
-		const iconForMenu = icons[Math.floor(Math.random() * icons.length)];
-		// @ts-ignore
-		menuItem.icon = allIonicIcons[iconForMenu];
-	});
-	menuItems = [...menuItems];
+	// const icons = Object.keys(allIonicIcons);
+	// menuItems.map((menuItem) => {
+	// 	const iconForMenu = icons[Math.floor(Math.random() * icons.length)];
+	// 	// @ts-ignore
+	// 	menuItem.icon = allIonicIcons[iconForMenu];
+	// });
+	// menuItems = [...menuItems];
 
 	const closeAndNavigate = async (url: string) => {
 		console.log('Navigate url', url);
@@ -140,7 +83,8 @@
 </script>
 
 <ion-menu {side} content-id="main" menu-id="mainmenu" class:menuhide={hideMenu}>
-	{#if menuItems.length > 0}
+
+
 		<ion-header>
 			<ion-toolbar translucent="true">
 				<ion-title>Menu</ion-title>
@@ -148,7 +92,28 @@
 		</ion-header>
 		<ion-content>
 			<ion-list>
-				{#each menuItems as menuItem, i}
+
+				{#each appPages as p, i}
+					{#if !p.requireLogin || $currentUser}
+						<ion-menu-toggle auto-hide="false">
+							<ion-item
+								routerDirection="root"
+								on:click={() => {
+									closeAndNavigate(p.url)
+								}}
+								lines="none"
+								detail="false"
+								class={$page.route?.id === p.url ? 'active-item' : ''}
+							>
+							<!--$page.path.includes(href) ? 'active-item' : ''-->
+								<ion-icon slot="start" icon={p.icon} />
+								<ion-label>{p.title}</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+					{/if}
+				{/each}
+
+				<!-- {#each menuItems as menuItem, i}
 					<ion-item
 						on:click={() => {
 							closeAndNavigate(menuItem.url);
@@ -157,7 +122,7 @@
 						<ion-icon icon={menuItem.icon} slot="start" color={getRandomColor()} />
 						<ion-label>{menuItem.label}</ion-label>
 					</ion-item>
-				{/each}
+				{/each} -->
 
 				<ion-item />
 				{#if iosInstall}
@@ -179,34 +144,16 @@
 					</ion-item>
 					<ion-item />
 				{/if}
-
-				<ion-item
-					on:click={() => {
-						window.open('https://github.com/Tommertom/svelte-ionic-app', '_blank');
-					}}
-				>
-					<ion-icon icon={allIonicIcons['star']} slot="start" />
-					<ion-label>Go to GitHub for this app</ion-label>
-				</ion-item>
-				<ion-item
-					on:click={() => {
-						window.open(
-							'https://forum.ionicframework.com/t/ionicsvelte-all-of-ionics-ui-in-one-svelte-app',
-							'_blank'
-						);
-					}}
-				>
-					<ion-icon icon={allIonicIcons['star']} slot="start" />
-					<ion-label>Go to Ionic Forum</ion-label>
-				</ion-item>
 			</ion-list>
 		</ion-content>
-	{/if}
 </ion-menu>
 
 <style>
 	ion-item {
 		cursor: pointer;
+	}
+	.active-item {
+		font-weight: bold;
 	}
 
 	.menuhide {

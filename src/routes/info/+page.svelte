@@ -7,9 +7,9 @@
 		<ion-buttons slot="start">
 			<ion-menu-button />
 		</ion-buttons>
-		<ion-title>Main Page</ion-title>
+		<ion-title>info page</ion-title>
 	</ion-toolbar>
 </ion-header>
-<ion-content>
-	this is the main page
+<ion-content class="ion-padding">
+	info page
 </ion-content>
