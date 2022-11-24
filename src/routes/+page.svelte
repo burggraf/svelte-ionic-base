@@ -10,6 +10,6 @@
 		<ion-title>Main Page</ion-title>
 	</ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-padding">
 	this is the main page
 </ion-content>
