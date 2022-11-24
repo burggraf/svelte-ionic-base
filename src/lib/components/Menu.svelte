@@ -22,34 +22,9 @@
 	});
 
 	const appPages: Array<{ title: string, url: string; requireLogin: boolean; icon: any }> = [
-		{ title: 'Calendar', url: '/calendar', icon: allIonicIcons.calendarOutline, requireLogin: false },
-		{ title: 'Charts', url: '/chart', icon: allIonicIcons.barChartOutline, requireLogin: false },
 		{ title: 'Settings', url: '/settings', icon: allIonicIcons.settingsOutline, requireLogin: false },
 		{ title: 'Info', url: '/info', icon: allIonicIcons.informationCircle, requireLogin: false },
 	]
-
-
-	let menuItems: Array<{ url: string; label: string; icon: any }> = [
-		{
-			label: 'Home',
-			icon: allIonicIcons.home,
-			url: '/'
-		},
-		{
-			label: 'Components',
-			icon: allIonicIcons.star,
-			url: '/components'
-		}
-	];
-
-	// Randomize the icons
-	// const icons = Object.keys(allIonicIcons);
-	// menuItems.map((menuItem) => {
-	// 	const iconForMenu = icons[Math.floor(Math.random() * icons.length)];
-	// 	// @ts-ignore
-	// 	menuItem.icon = allIonicIcons[iconForMenu];
-	// });
-	// menuItems = [...menuItems];
 
 	const closeAndNavigate = async (url: string) => {
 		console.log('Navigate url', url);
@@ -112,17 +87,6 @@
 						</ion-menu-toggle>
 					{/if}
 				{/each}
-
-				<!-- {#each menuItems as menuItem, i}
-					<ion-item
-						on:click={() => {
-							closeAndNavigate(menuItem.url);
-						}}
-					>
-						<ion-icon icon={menuItem.icon} slot="start" color={getRandomColor()} />
-						<ion-label>{menuItem.label}</ion-label>
-					</ion-item>
-				{/each} -->
 
 				<ion-item />
 				{#if iosInstall}
