@@ -8,12 +8,12 @@
 	const doneThat = async () => {
 		const options = {
 			header: 'Great!',
-			subHeader: 'Thanks for install Ionic Svelte',
+			subHeader: 'Thanks for installing Ionic Svelte',
 			message: 'The app should now be visible as icon on your home screen - somewhere....',
 			buttons: [
 				{
 					text: 'Ok',
-					handler: (data) => {
+					handler: (data: any) => {
 						console.log('Confirm Ok', data);
 						closeModal();
 					}
