@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { currentUser } from '$stores/user.store'
+	import Login from './Login/Login.svelte'
 
 	import { pwaBeforeInstallPrompt, canInstall } from '$lib/services/pwa';
 
@@ -22,6 +23,8 @@
 	const app_name = __APP_NAME__;
 	const app_homepage = __APP_HOMEPAGE__;
 	const app_description = __APP_DESCRIPTION__;
+	const app_menu_title = __APP_MENU_TITLE__;
+	const app_menu_subtitle = __APP_MENU_SUBTITLE__;
 	// *******************
 
 	import { toast } from '$services/toast'
@@ -94,14 +97,29 @@
 </script>
 
 <ion-menu {side} content-id="main" menu-id="mainmenu" class:menuhide={hideMenu}>
-
-
 		<ion-header>
 			<ion-toolbar translucent="true">
-				<ion-title>Menu</ion-title>
+				<ion-title>{app_menu_title}</ion-title>
 			</ion-toolbar>
 		</ion-header>
-		<ion-content>
+		<ion-content class="">
+			<p class="menu_subtitle">
+				{app_menu_subtitle}
+			</p>
+			<div class="login">
+				<ion-menu-toggle auto-hide="false">
+					<Login
+						providers={['google', 'facebook']}
+						onSignOut={() => {
+							localStorage.clear();
+							window.location.href = '/'
+						}}
+						profileFunction={() => {
+							//console.log('do some profileFunction here')
+						}}
+					/>
+				</ion-menu-toggle>
+			</div>
 			<ion-list>
 
 				{#each appPages as p, i}
@@ -197,6 +215,16 @@
 		--background: var(--ion-color-light);
 		font-weight: bold;
 		color: var(--ion-color-primary);
+	}
+	.menu_subtitle {
+		margin-left:8px;
+		margin-right:8px;
+		text-align:center;
+		color:var(--ion-color-medium)		
+	}
+	.login {
+		margin-left: 10px;
+		margin-right: 10px;
 	}
 
 </style>

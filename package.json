@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "homepage": "https://ionicsvelte.firebaseapp.com",
+  "menu_title": "IonicSvelteKit",
+  "menu_subtitle": "A starter project for Ionic + SvelteKit",
   "repository": {
     "type": "git",
     "url": "https://github.com/Tommertom/svelte-ionic-npm.git"
@@ -39,6 +41,7 @@
   "type": "module",
   "dependencies": {
     "@ionic/core": "^6.3.0",
+    "@supabase/supabase-js": "^2.1.1",
     "ionic-svelte": "^0.5.13",
     "localforage": "^1.10.0",
     "rxjs": "^7.5.7"
