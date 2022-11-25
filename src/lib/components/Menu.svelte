@@ -15,6 +15,17 @@
 	let hideMenu = true; // a hack because the menu shows before the splash (in Chrome on Windows)
 
 	export let side = 'start';
+	import { showConfirm } from '$services/alert'
+
+	// ** get package info
+	console.log('__APP_VERSION__', __APP_VERSION__);
+	const version = __APP_VERSION__;
+	// *******************
+
+	import { toast } from '$services/toast'
+	import NetworkService from '$services/network.service'
+	const networkService = NetworkService.getInstance()
+	let onlineStatus = false
 
 	// this is unfortunately needed in order to have the menuController API function properly
 	onMount(() => {
@@ -55,6 +66,29 @@
 
 		await modal.present();
 	};
+	const toggleOnlineStatus = async (e) => {
+				await showConfirm({
+					header: 'Manually set online status',
+					message: `Force online status to <b>${onlineStatus ? 'Offline' : 'Online'}</b>?`,
+					okHander: async () => {
+						networkService.forceOnlineValue(!onlineStatus)
+						toast(
+							`Online status set to: <b>${onlineStatus ? 'Online' : 'Offline'}</b>`,
+							onlineStatus ? 'success' : 'danger'
+						)
+					},
+				})
+		}
+	const toggleDebugger = () => {
+		const el = document.getElementById('debugger');
+		if (el) {
+			if (el.classList.contains('hidden')) {
+				el.classList.remove('hidden')
+			} else {
+				el.classList.add('hidden')
+			}
+		}
+	}
 </script>
 
 <ion-menu {side} content-id="main" menu-id="mainmenu" class:menuhide={hideMenu}>
@@ -110,7 +144,22 @@
 				{/if}
 			</ion-list>
 		</ion-content>
-</ion-menu>
+		<ion-footer class="ion-padding">	  
+	
+			<div class="pointer centered" on:click={toggleDebugger}>v.{version}</div>
+			<div id="debugger" class="hidden">			
+			<span class="pointer"
+				on:click={() => {localStorage.clear()}}>clear cache</span>
+			<span class="pointer span-on-right"
+				on:click={toggleOnlineStatus}
+			>
+				<ion-label color={onlineStatus ? 'success' : 'danger'}
+					><b>{onlineStatus ? 'Online' : 'Offline'}</b></ion-label
+				>
+			</span>
+		</div>
+		</ion-footer>
+	</ion-menu>
 
 <style>
 	ion-item {
@@ -123,4 +172,28 @@
 	.menuhide {
 		display: none;
 	}
+
+	.hidden {
+		display: none;
+	}
+	.pointer {
+		cursor: pointer;
+	}
+	.span-on-right{
+		text-align:right;
+		float:right;
+		padding-right:5px;
+	}
+	.centered {
+		text-align: center;
+	}
+	ion-menu ion-content {
+		--background: var(--ion-item-background, var(--ion-background-color, #fff));
+	}
+
+	ion-item:hover {
+		--background: var(--ion-color-light);
+		font-weight: bold;
+	}
+
 </style>
