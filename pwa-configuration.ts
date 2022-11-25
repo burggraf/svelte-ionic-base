@@ -22,8 +22,10 @@ const pwaManifest = {
 
 
 const ionicSvelteDirectories = [
+    // these are obsolete, everything is in /static now
     'assets/json/*', 'assets/img/*', 'assets/img/slides/*',
-    'assets/img/ionic/*']
+    'assets/img/ionic/*'
+]
 
 const pwaConfiguration = {
     srcDir: './build',

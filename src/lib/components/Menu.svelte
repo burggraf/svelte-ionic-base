@@ -124,16 +124,16 @@
 					{/if}
 				{/each}
 
-				<ion-item />
+				<ion-item lines="none" />
 				{#if iosInstall}
-					<ion-item on:click={showIOSinstall}>
+					<ion-item on:click={showIOSinstall} lines="none">
 						<ion-icon icon={allIonicIcons['download']} slot="start" />
 						<ion-label>Install this app as PWA</ion-label>
 					</ion-item>
-					<ion-item />
+					<ion-item lines="none" />
 				{/if}
 				{#if $canInstall}
-					<ion-item
+					<ion-item lines="none"
 						on:click={() => {
 							const prompt = $pwaBeforeInstallPrompt;
 							prompt.prompt();
@@ -142,7 +142,7 @@
 						<ion-icon icon={allIonicIcons['download']} slot="start" />
 						<ion-label>Install this app as PWA</ion-label>
 					</ion-item>
-					<ion-item />
+					<ion-item lines="none" />
 				{/if}
 			</ion-list>
 		</ion-content>

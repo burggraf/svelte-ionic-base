@@ -35,7 +35,7 @@
 
 <ion-content fullscreen class="ion-padding">
 	<br />
-	<img src="/assets/svelte-ionic-logo.png" alt="Ionic Svelte" width="55%" />
+	<img src="/svelte-ionic-logo.png" alt="Ionic Svelte" width="55%" />
 	<h2>Hey there!</h2>
 	{#if !isSafari}
 		<br /><br />
@@ -51,9 +51,9 @@
 		<p>Great! The next step is to add this site to your home screen.</p>
 
 		<p>Select the share option in Safari and then select Add to Home Screen</p>
-		<img src="/assets/img/safari-bar.png" alt="Safari Bar" />
+		<img src="/safari-bar.png" alt="Safari Bar" />
 		<br />
-		<img width="60%" src="/assets/img/safari-share-options.png" alt="Safari Share Options" /><br />
+		<img width="60%" src="/safari-share-options.png" alt="Safari Share Options" /><br />
 		<ion-button expand="block" on:click={doneThat}>Yup - done that!</ion-button>
 	{/if}
 </ion-content>
