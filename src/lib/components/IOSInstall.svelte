@@ -35,7 +35,7 @@
 
 <ion-content fullscreen class="ion-padding">
 	<br />
-	<img src="/svelte-ionic-logo.png" alt="Ionic Svelte" width="55%" />
+	<img src="/icon-512.png" alt="Ionic Svelte" width="55%" />
 	<h2>Hey there!</h2>
 	{#if !isSafari}
 		<br /><br />

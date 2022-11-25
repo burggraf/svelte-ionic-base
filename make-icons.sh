@@ -3,9 +3,11 @@ sips -Z 384 static/icon-1024.png --out static/icon-384.png
 sips -Z 256 static/icon-1024.png --out static/icon-256.png
 sips -Z 192 static/icon-1024.png --out static/icon-192.png
 sips -Z 180 static/icon-1024.png --out static/icon-180.png
+sips -Z 180 static/icon-1024.png --out static/apple-touch-icon.png
 sips -Z 168 static/icon-1024.png --out static/icon-168.png
 sips -Z 167 static/icon-1024.png --out static/icon-167.png
 sips -Z 152 static/icon-1024.png --out static/icon-152.png
+sips -Z 150 static/icon-1024.png --out static/icon-150.png
 sips -Z 128 static/icon-1024.png --out static/icon-128.png
 sips -Z 120 static/icon-1024.png --out static/icon-120.png
 sips -Z 96 static/icon-1024.png --out static/icon-96.png
