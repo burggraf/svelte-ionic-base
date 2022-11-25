@@ -5,9 +5,6 @@
 	import { currentUser } from '$stores/user.store'
 	import Login from './Login/Login.svelte'
 
-	import SupabaseAuthService from '$services/supabase.auth.service'
-	import type { User } from '@supabase/supabase-js'
-
 	import { pwaBeforeInstallPrompt, canInstall } from '$lib/services/pwa';
 
 	import { menuController, modalController, registerMenu } from '$ionic/svelte';
@@ -30,30 +27,12 @@
 	// *******************
 
 	import { toast } from '$services/toast'
-	import NetworkService from '$services/network.service'
-	const networkService = NetworkService.getInstance()
-	let onlineStatus = false
-	let userSubscription: any
-	let onlineSubscription: any
-
+	import { isOnline } from '$services/network.service'
 
 	// this is unfortunately needed in order to have the menuController API function properly
 
 	onMount(() => {
 		registerMenu('mainmenu')
-
-		userSubscription = SupabaseAuthService.user.subscribe(async (newuser: User | null) => {
-			if (newuser) {
-				currentUser.set(newuser)
-			} else {
-				currentUser.set(null)
-			}
-			// console.log('got user:', user)
-		})
-		// const networkService = NetworkService.getInstance()
-		onlineSubscription = networkService.online.subscribe((online: boolean) => {
-			onlineStatus = online
-		})
 	})
 
 
@@ -95,12 +74,12 @@
 	const toggleOnlineStatus = async (e) => {
 				await showConfirm({
 					header: 'Manually set online status',
-					message: `Force online status to <b>${onlineStatus ? 'Offline' : 'Online'}</b>?`,
+					message: `Force online status to <b>${$isOnline ? 'Offline' : 'Online'}</b>?`,
 					okHander: async () => {
-						networkService.forceOnlineValue(!onlineStatus)
+						isOnline.set(!$isOnline);
 						toast(
-							`Online status set to: <b>${onlineStatus ? 'Online' : 'Offline'}</b>`,
-							onlineStatus ? 'success' : 'danger'
+							`Online status set to: <b>${$isOnline ? 'Online' : 'Offline'}</b>`,
+							$isOnline ? 'success' : 'danger'
 						)
 					},
 				})
@@ -194,8 +173,8 @@
 			<span class="pointer span-on-right"
 				on:click={toggleOnlineStatus}
 			>
-				<ion-label color={onlineStatus ? 'success' : 'danger'}
-					><b>{onlineStatus ? 'Online' : 'Offline'}</b></ion-label
+				<ion-label color={$isOnline ? 'success' : 'danger'}
+					><b>{$isOnline ? 'Online' : 'Offline'}</b></ion-label
 				>
 			</span>
 		</div>
