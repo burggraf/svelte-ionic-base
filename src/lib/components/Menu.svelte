@@ -18,8 +18,10 @@
 	import { showConfirm } from '$services/alert'
 
 	// ** get package info
-	console.log('__APP_VERSION__', __APP_VERSION__);
-	const version = __APP_VERSION__;
+	const app_version = __APP_VERSION__;
+	const app_name = __APP_NAME__;
+	const app_homepage = __APP_HOMEPAGE__;
+	const app_description = __APP_DESCRIPTION__;
 	// *******************
 
 	import { toast } from '$services/toast'
@@ -146,7 +148,7 @@
 		</ion-content>
 		<ion-footer class="ion-padding">	  
 	
-			<div class="pointer centered" on:click={toggleDebugger}>v.{version}</div>
+			<div class="pointer centered" on:click={toggleDebugger}>v.{app_version}</div>
 			<div id="debugger" class="hidden">			
 			<span class="pointer"
 				on:click={() => {localStorage.clear()}}>clear cache</span>

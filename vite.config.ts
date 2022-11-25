@@ -22,7 +22,7 @@ const config: UserConfig = {
 		'__APP_VERSION__': JSON.stringify(pkg.version),
 		'__APP_NAME__': JSON.stringify(pkg.name),
 		'__APP_HOMEPAGE__': JSON.stringify(pkg.homepage),
-		'__APP_DESCRIPTION__': JSON.stringify(pkg.description),
+		'__APP_DESCRIPTION__': JSON.stringify(pkg.description)
 	  }	
 };
 
