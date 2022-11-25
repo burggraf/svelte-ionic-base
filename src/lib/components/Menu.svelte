@@ -196,6 +196,7 @@
 	ion-item:hover {
 		--background: var(--ion-color-light);
 		font-weight: bold;
+		color: var(--ion-color-primary);
 	}
 
 </style>
