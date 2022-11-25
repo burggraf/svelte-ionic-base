@@ -5,6 +5,9 @@
 	import { currentUser } from '$stores/user.store'
 	import Login from './Login/Login.svelte'
 
+	import SupabaseAuthService from '$services/supabase.auth.service'
+	import type { User } from '@supabase/supabase-js'
+
 	import { pwaBeforeInstallPrompt, canInstall } from '$lib/services/pwa';
 
 	import { menuController, modalController, registerMenu } from '$ionic/svelte';
@@ -14,7 +17,6 @@
 	import IOSInstall from '$lib/components/IOSInstall.svelte';
 
 	let hideMenu = true; // a hack because the menu shows before the splash (in Chrome on Windows)
-
 	export let side = 'start';
 	import { showConfirm } from '$services/alert'
 
@@ -31,11 +33,29 @@
 	import NetworkService from '$services/network.service'
 	const networkService = NetworkService.getInstance()
 	let onlineStatus = false
+	let userSubscription: any
+	let onlineSubscription: any
+
 
 	// this is unfortunately needed in order to have the menuController API function properly
+
 	onMount(() => {
-		registerMenu('mainmenu');
-	});
+		registerMenu('mainmenu')
+
+		userSubscription = SupabaseAuthService.user.subscribe(async (newuser: User | null) => {
+			if (newuser) {
+				currentUser.set(newuser)
+			} else {
+				currentUser.set(null)
+			}
+			// console.log('got user:', user)
+		})
+		// const networkService = NetworkService.getInstance()
+		onlineSubscription = networkService.online.subscribe((online: boolean) => {
+			onlineStatus = online
+		})
+	})
+
 
 	const appPages: Array<{ title: string, url: string; requireLogin: boolean; icon: any }> = [
 		{ title: 'Profile', url: '/profile', icon: allIonicIcons.personOutline, requireLogin: true },
