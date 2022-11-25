@@ -11,7 +11,8 @@
 	/* Theme variables */
 	import '../theme/variables.css';
 
-	setupIonicSvelte();
+	// setupIonicSvelte();
+	setupIonicSvelte({ mode: 'ios' });
 
 	pwaStatusStream.subscribe((status: PWAStatus) => {
 		console.log('PWA status', status);
