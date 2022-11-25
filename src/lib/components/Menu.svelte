@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { currentUser } from '$stores/user.store'
+	import { currentUser } from '$services/supabase.auth.service';
 	import Login from './Login/Login.svelte'
 
 	import { pwaBeforeInstallPrompt, canInstall } from '$lib/services/pwa';
@@ -112,7 +112,7 @@
 						providers={['google', 'facebook']}
 						onSignOut={() => {
 							localStorage.clear();
-							window.location.href = '/'
+							// window.location.href = '/'
 						}}
 						profileFunction={() => {
 							//console.log('do some profileFunction here')

@@ -1,5 +1,5 @@
 <script lang="ts">
-import SupabaseAuthService from "$services/supabase.auth.service";
+import { signInWithProvider } from '$services/supabase.auth.service'
 import type { Provider } from "@supabase/supabase-js";
 import { toast } from '$services/toast';
 import { loadingBox } from "$services/loadingMessage";
@@ -40,7 +40,7 @@ import {
     logoMicrosoft as microsoft,
   } from "ionicons/icons";
 
-  const icons = {
+  const icons: any = {
     "apple": apple,
     "google": google,
     "twitter": twitter,
@@ -60,28 +60,23 @@ import {
     "zoom": "./assets/zoom.svg",
   };
   
-let supabaseAuthService: SupabaseAuthService;
-	if (!supabaseAuthService) {
-		supabaseAuthService = 
-            SupabaseAuthService.getInstance();
-	}
-	const signInWithProvider = async (provider: Provider) => {
+    const doSignInWithProvider = async (provider: Provider) => {
         const loader = await loadingBox(`Contacting ${provider}...`);
 
-		const { /*user, session,*/ error } = 
-        await supabaseAuthService.signInWithProvider(provider as Provider);
-		if (error) {
+        const { /*user, session,*/ error } = 
+        await signInWithProvider(provider as Provider);
+        if (error) {
             loader.dismiss();
-			toast(error.message);
-		}
-	}
+            toast(error.message);
+        }
+    }
 </script>    
 		<ion-button
 			fill='clear'
 			class='round-button'
 			style='margin:8px;color:primary'
 			on:click={() => {
-				signInWithProvider(name)
+				doSignInWithProvider(name)
 			}}>
 			{#if (name.startsWith('./assets/'))}
 				<ion-icon src={name}  size='large' slot="icon-only" />	

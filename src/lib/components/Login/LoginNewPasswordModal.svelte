@@ -1,17 +1,12 @@
 <script lang="ts">
-  import SupabaseAuthService from "$services/supabase.auth.service";
+  // import SupabaseAuthService from "$services/supabase.auth.service";
+  import { updatePassword } from "$services/supabase.auth.service";
   import { modalController } from "$ionic/svelte";
   import { toast } from '$services/toast';
 
   import { loadingBox } from "$services/loadingMessage";
 
-  export let token: string = "";
-
-  let supabaseAuthService: SupabaseAuthService;
-	if (!supabaseAuthService) {
-		supabaseAuthService = 
-            SupabaseAuthService.getInstance();
-	}
+  // export let token: string = "";
 
   import {
     mailOutline,
@@ -26,17 +21,17 @@
   const closeOverlay = () => {
     modalController.dismiss({ data: Date.now() });
   };
-  function handlePasswordValue(event) {
+  function handlePasswordValue(event: any) {
     password = event.target.value!;
   }
 
   let password = '';
 
-  const updatePassword = async () => {
+  const doUpdatePassword = async () => {
     const loader = await loadingBox('Updating password...');
 
         const { /*data,*/ error }  = 
-            await supabaseAuthService.updatePassword(token, password);
+            await updatePassword(password);
         if (error) { loader.dismiss();toast(error.message) }
         else { 
             loader.dismiss();
@@ -91,7 +86,7 @@
               <ion-col>
                   <ion-button expand="block" color="primary"
                   disabled={password.length < 6}
-                  on:click={updatePassword}>
+                  on:click={doUpdatePassword}>
                       <ion-icon icon={arrowForwardOutline} size="large" />&nbsp;&nbsp;
                       <b>Save New Password</b>
                   </ion-button>

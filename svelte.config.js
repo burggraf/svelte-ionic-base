@@ -16,6 +16,7 @@ const config = {
 		alias: {
 			'$ionic': 'src/lib/ionic',
 			'$ionpage': 'src/lib/ionic/svelte/components/IonPage.svelte',
+			'$interfaces': 'src/interfaces',
 			'$services': 'src/services',
 			'$stores': 'src/stores',
 		}

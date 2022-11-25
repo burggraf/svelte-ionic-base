@@ -1,5 +1,6 @@
 <script lang="ts">
-  import SupabaseAuthService from "$services/supabase.auth.service";
+//  import SupabaseAuthService from "$services/supabase.auth.service";
+  import { resetPassword, signInWithEmail, sendMagicLink, signUpWithEmail } from "$services/supabase.auth.service";
   import { modalController } from "$ionic/svelte";
   import LoginProviderSignInButton from "./LoginProviderSignInButton.svelte";
   import type { Provider } from "@supabase/supabase-js";
@@ -15,12 +16,6 @@
 //         customElements.define(tagName, customElement);
 //     }
 // };
-
-  let supabaseAuthService: SupabaseAuthService;
-	if (!supabaseAuthService) {
-		supabaseAuthService = 
-            SupabaseAuthService.getInstance();
-	}
 
   import {
     mailOutline,
@@ -54,10 +49,10 @@
     modalController.dismiss({ data: Date.now() });
   };
 
-  function handleEmailValue(event) {
+  function handleEmailValue(event: any) {
     email = event.target.value!;
   }
-  function handlePasswordValue(event) {
+  function handlePasswordValue(event: any) {
     password = event.target.value!;
   }
 
@@ -65,19 +60,18 @@
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
-  const resetPassword = async () => {
+  const doResetPassword = async () => {
     const loader = await loadingBox('Requesting password reset link...');
     const {/*data,*/ error} = 
-            await supabaseAuthService.resetPassword(email);
+            await resetPassword(email);
             if (error) { loader.dismiss();toast(error.message) }
             else { loader.dismiss();toast('Please check your email for a password reset link', 'success') }
         }
   
-  const signInWithEmail = async ()=> {
+  const doSignInWithEmail = async ()=> {
         const loader = await loadingBox('Logging in...');
-        console.log('loader', loader);
         const {user, session, error} = 
-        await supabaseAuthService.signInWithEmail(email, password);
+        await signInWithEmail(email, password);
         if (error) { 
             loader.dismiss();
         } else { 
@@ -93,7 +87,7 @@
   const signUp = async () => {
     const loader = await loadingBox('Signing you up...');
     const {/*user, session,*/ error} = 
-        await supabaseAuthService.signUpWithEmail(email, password);
+        await signUpWithEmail(email, password);
         if (error) { 
             console.error(error); 
             loader.dismiss();
@@ -106,10 +100,10 @@
   const toggleSignUpMode = () => {
     signUpMode = !signUpMode;
   }
-  const sendMagicLink = async () => {
+  const doSendMagicLink = async () => {
     const loader = await loadingBox('Requesting magic link...');
         const {/*user, session,*/ error} = 
-            await supabaseAuthService.sendMagicLink(email);
+            await sendMagicLink(email);
             if (error) { 
                 loader.dismiss();
                 toast(error.message) }
@@ -188,7 +182,7 @@
                   slot="start" size="large" color="medium"></ion-icon>
                   </ion-input> 
               </ion-item>
-              <div on:click={resetPassword} 
+              <div on:click={doResetPassword} 
                     class="ion-text-right" 
                     style="padding-top:10px">
                   <ion-label><b>Forgot password?</b></ion-label>
@@ -207,7 +201,7 @@
               <ion-col>
                   <ion-button expand="block" color="primary"
                   disabled={!validateEmail(email) || password.length < 6}
-                  on:click={signInWithEmail}>
+                  on:click={doSignInWithEmail}>
                       <ion-icon icon={arrowForwardOutline} size="large" />&nbsp;&nbsp;
                       <b>Sign in with email</b>
                   </ion-button>
@@ -242,7 +236,7 @@
               </div>
               <ion-button expand="block" 
               disabled={!validateEmail(email) || password.length > 0}
-              on:click={sendMagicLink}>
+              on:click={doSendMagicLink}>
               <ion-icon icon={link} size="large" />&nbsp;&nbsp;
               <b>Send Sign In Link</b></ion-button>                    
           </ion-col>

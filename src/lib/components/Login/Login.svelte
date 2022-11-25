@@ -3,7 +3,7 @@
   	import LoginNewPasswordModal from './LoginNewPasswordModal.svelte'
 	import { modalController } from '$ionic/svelte'
 	import { onMount } from 'svelte'
-	import SupabaseAuthService from '$services/supabase.auth.service'
+	import { currentUser, signOut as signOutUser } from '$services/supabase.auth.service'
 	import type { User, Provider } from '@supabase/supabase-js'
 	export let profileFunction: Function = () => {}
 	export let providers: Provider[] = []
@@ -12,17 +12,9 @@
 	// export let profileTable: string = ''
 	// export let profileKey: string = ''
 	let token = ''
-	let supabaseAuthService: SupabaseAuthService
 
-	let localUser: User | null = null
 	onMount(() => {
-    checkHash();
-		SupabaseAuthService.user.subscribe((user: User | null) => {
-			localUser = user
-		})
-		if (!supabaseAuthService) {
-			supabaseAuthService = SupabaseAuthService.getInstance()
-		}
+	    checkHash();
 	})
 
   const checkHash = () => {
@@ -48,7 +40,7 @@
 		}
 	}
 	const signOut = async () => {		
-		const { error } = await supabaseAuthService.signOut()
+		const { error } = await signOutUser()
 		if (error) {
 			console.error('Error signing out', error)
 		} else {
@@ -90,7 +82,7 @@
 	}
 </script>
 
-{#if localUser}
+{#if $currentUser}
 	<div class="fullWidth">
 		<ion-button
 			fill="outline"
@@ -100,7 +92,7 @@
 			expand="block"
 			strong
 		>
-			{localUser?.email}
+			{$currentUser?.email}
 		</ion-button>
 		<ion-button fill="outline" color="dark" on:click={signOut} size="small" expand="block" strong>
 			Sign Out
