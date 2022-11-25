@@ -9,6 +9,7 @@ sips -Z 167 static/icon-1024.png --out static/icon-167.png
 sips -Z 152 static/icon-1024.png --out static/icon-152.png
 sips -Z 150 static/icon-1024.png --out static/icon-150.png
 sips -Z 128 static/icon-1024.png --out static/icon-128.png
+sips -Z 128 static/icon-1024.png --out static/favicon.png
 sips -Z 120 static/icon-1024.png --out static/icon-120.png
 sips -Z 96 static/icon-1024.png --out static/icon-96.png
 sips -Z 64 static/icon-1024.png --out static/icon-64.png
