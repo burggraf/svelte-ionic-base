@@ -1,6 +1,6 @@
 <script lang="ts">
   // import SupabaseAuthService from "$services/supabase.auth.service";
-  import { updatePassword } from "$services/supabase.auth.service";
+  import { updatePassword } from "./LoginNewPasswordModal";
   import { modalController } from "$ionic/svelte";
   import { toast } from '$services/toast';
 

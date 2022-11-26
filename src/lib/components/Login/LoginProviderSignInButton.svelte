@@ -1,5 +1,5 @@
 <script lang="ts">
-import { signInWithProvider } from '$services/supabase.auth.service'
+import { signInWithProvider } from './LoginProviderSignInButton';
 import type { Provider } from "@supabase/supabase-js";
 import { toast } from '$services/toast';
 import { loadingBox } from "$services/loadingMessage";

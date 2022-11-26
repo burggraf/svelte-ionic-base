@@ -1,6 +1,6 @@
 <script lang="ts">
 //  import SupabaseAuthService from "$services/supabase.auth.service";
-  import { resetPassword, signInWithEmail, sendMagicLink, signUpWithEmail } from "$services/supabase.auth.service";
+  import { signUpWithEmail, sendMagicLink, signInWithEmail, resetPassword } from './LoginModal';
   import { modalController } from "$ionic/svelte";
   import LoginProviderSignInButton from "./LoginProviderSignInButton.svelte";
   import type { Provider } from "@supabase/supabase-js";
