@@ -1,0 +1,1 @@
+const r=!1,e={crawl:!0,enabled:!0,onError:"continue",default:!0},t=Object.freeze(Object.defineProperty({__proto__:null,ssr:!1,prerender:e},Symbol.toStringTag,{value:"Module"}));export{t as _,e as p,r as s};
