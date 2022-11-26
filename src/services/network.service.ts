@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-export let isOnline: any = writable(navigator.onLine);
+export let isOnline: any = writable<boolean>(navigator.onLine);
 window.addEventListener('offline', function(e) { 
   console.log('window event: offline')
   isOnline.set(false);
