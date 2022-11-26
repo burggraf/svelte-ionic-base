@@ -3,7 +3,7 @@
   "description": "SvelteKit + Ionic",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://github.com/burggraf/svelte-ionic-base",
+  "homepage": "https://burggraf.github.io/svelte-ionic-base",
   "menu_title": "Svelte Ionic",
   "menu_subtitle": "SvelteKit + Ionic",
   "profileTable": "profile",
