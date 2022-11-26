@@ -15,10 +15,10 @@ const config = {
 			fallback: 'index.html',
 			precompress: false
 		}),
-        paths: {
-            // change below to your repo name
-            base: dev ? "" : "/svelte-ionic-base",
-        },
+        // paths: {
+        //     // change below to your repo name
+        //     base: dev ? "" : "/svelte-ionic-base",
+        // },
 		// hydrate the <div id="svelte"> element in src/app.html	
 		// target: "#svelte",	
 		alias: {
