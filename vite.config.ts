@@ -25,6 +25,8 @@ const config: UserConfig = {
 		'__APP_DESCRIPTION__': JSON.stringify(pkg.description),
 		'__APP_MENU_TITLE__': JSON.stringify(pkg.menu_title),
 		'__APP_MENU_SUBTITLE__': JSON.stringify(pkg.menu_subtitle),
+		'__APP_PROFILE_TABLE__': JSON.stringify(pkg.profileTable),
+		'__APP_PROFILE_KEY__': JSON.stringify(pkg.profileKey),
 	  }	
 };
 
