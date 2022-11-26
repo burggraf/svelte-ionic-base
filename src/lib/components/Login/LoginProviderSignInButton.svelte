@@ -55,11 +55,15 @@ import {
     "linkedin": linkedin,
     "azure": azure,
     "microsoft": microsoft,
-    "spotify": "./assets/spotify.svg",
-    "notion": "./assets/notion.svg",
-    "zoom": "./assets/zoom.svg",
+    "spotify": "./spotify.svg",
+    "notion": "./notion.svg",
+    "zoom": "./zoom.svg",
   };
   
+  const hasSpecialIcon = (" spotify notion zoom ".indexOf(name) > -1);
+  console.log('*** name', name);
+  console.log('*** hasSpecialIcon', hasSpecialIcon);
+
     const doSignInWithProvider = async (provider: Provider) => {
         const loader = await loadingBox(`Contacting ${provider}...`);
 
@@ -78,10 +82,10 @@ import {
 			on:click={() => {
 				doSignInWithProvider(name)
 			}}>
-			{#if (name.startsWith('./assets/'))}
-				<ion-icon src={name}  size='large' slot="icon-only" />	
+			{#if (hasSpecialIcon)}
+				<ion-icon src={icons[name]}  size='large' slot="icon-only" />	
 			{/if}
-			{#if (!name.startsWith('./assets/'))}
+			{#if (!hasSpecialIcon)}
 				<ion-icon 
                     icon={icons[name]} 
                     style='color: {logoColors[name] || 'black'}'

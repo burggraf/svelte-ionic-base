@@ -71,7 +71,7 @@
 
 		await modal.present();
 	};
-	const toggleOnlineStatus = async (e) => {
+	const toggleOnlineStatus = async (e: any) => {
 				await showConfirm({
 					header: 'Manually set online status',
 					message: `Force online status to <b>${$isOnline ? 'Offline' : 'Online'}</b>?`,
