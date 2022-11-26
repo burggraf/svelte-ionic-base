@@ -3,8 +3,9 @@
   	import LoginNewPasswordModal from './LoginNewPasswordModal.svelte'
 	import { modalController } from '$ionic/svelte'
 	import { onMount } from 'svelte'
-	import { currentUser, signOut as signOutUser } from '$services/supabase.auth.service'
-	import type { User, Provider } from '@supabase/supabase-js'
+	import { currentUser } from '$services/supabase.auth.service'
+	import { signOut } from './Login';
+	import type { Provider } from '@supabase/supabase-js'
 	export let profileFunction: Function = () => {}
 	export let providers: Provider[] = []
 	export let onSignIn: Function = () => {}
@@ -39,8 +40,8 @@
 			profileFunction()
 		}
 	}
-	const signOut = async () => {		
-		const { error } = await signOutUser()
+	const doSignOut = async () => {		
+		const { error } = await signOut()
 		if (error) {
 			console.error('Error signing out', error)
 		} else {
@@ -94,7 +95,7 @@
 		>
 			{$currentUser?.email}
 		</ion-button>
-		<ion-button fill="outline" color="dark" on:click={signOut} size="small" expand="block" strong>
+		<ion-button fill="outline" color="dark" on:click={doSignOut} size="small" expand="block" strong>
 			Sign Out
 		</ion-button>
 	</div>
