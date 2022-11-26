@@ -15,12 +15,6 @@ const config = {
 			fallback: 'index.html',
 			precompress: false
 		}),
-        // paths: {
-        //     // change below to your repo name
-        //     base: dev ? "" : "/svelte-ionic-base",
-        // },
-		// hydrate the <div id="svelte"> element in src/app.html	
-		// target: "#svelte",	
 		alias: {
 			'$ionic': 'src/lib/ionic',
 			'$ionpage': 'src/lib/ionic/svelte/components/IonPage.svelte',
