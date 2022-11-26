@@ -15,10 +15,10 @@ const config = {
 			fallback: 'index.html',
 			precompress: false
 		}),
-        paths: {
-            // change below to your repo name
-            base: dev ? "" : "",
-        },
+        // paths: {
+        //     // change below to your repo name
+        //     base: dev ? "" : "",
+        // },
 		// hydrate the <div id="svelte"> element in src/app.html	
 		// target: "#svelte",	
 		alias: {
