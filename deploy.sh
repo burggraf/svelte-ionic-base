@@ -1,2 +1,2 @@
-npm run build && mkdir -p ./docs && cp -r ./build/* ./docs && rm -r build
-git add docs
+# init with:  wrangler pages project create
+npm run build && wrangler pages publish ./build
