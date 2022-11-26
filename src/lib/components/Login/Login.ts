@@ -1,4 +1,5 @@
-import { supabase, currentUser, currentProfile } from '$services/supabase.auth.service';
+import { supabase } from '$services/supabase.service';
+import { currentUser, currentProfile } from '$services/supabase.auth.service';
 
 export const signOut = async () => {
     const { error } = await supabase.auth.signOut();

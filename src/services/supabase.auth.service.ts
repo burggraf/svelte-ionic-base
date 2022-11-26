@@ -1,16 +1,10 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import type { Provider, User } from '@supabase/supabase-js';
+import { supabase } from '$services/supabase.service';
+import type { User } from '@supabase/supabase-js';
 import { writable } from 'svelte/store';
 export let currentUser: any = writable<User | null>(null);
 export let currentProfile: any = writable<any>(null);
 const profileTable = __APP_PROFILE_TABLE__;
 const profileKey = __APP_PROFILE_KEY__;
-
-const VITE_SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
-const VITE_SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY
-
-// console.log('*** auth: createClient ***');
-export const supabase: SupabaseClient = createClient(VITE_SUPABASE_URL, VITE_SUPABASE_KEY);
 
 supabase.auth.onAuthStateChange(async (event, session) => {
   console.log('onAuthStateChange', event, session);

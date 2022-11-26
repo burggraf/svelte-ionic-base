@@ -1,4 +1,4 @@
-import { supabase } from '$services/supabase.auth.service';
+import { supabase } from '$services/supabase.service';
 import type { Provider } from '@supabase/supabase-js';
 
 export const signInWithProvider = async (provider: Provider) => {

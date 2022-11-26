@@ -1,4 +1,4 @@
-import { supabase } from '$services/supabase.auth.service';
+import { supabase } from '$services/supabase.service';
 
 export const updatePassword = async (new_password: string) => {
     const { error, data } = await supabase.auth

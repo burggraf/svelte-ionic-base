@@ -1,6 +1,6 @@
 <script lang="ts">
 	import IonPage from '$ionpage';
-	import { saveProfile } from '$services/supabase.data.service';
+	import { saveProfile } from './profile';
 	import { currentUser, currentProfile } from '$services/supabase.auth.service';
 	let changed = false;
 	const save = async (e?: any) => {
