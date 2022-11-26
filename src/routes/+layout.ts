@@ -1,5 +1,5 @@
 export const ssr = false;
-export const prerender = true;
+export const prerender = false;
 export const trailingSlash = 'always';
 export const paths = {
     // change below to your repo name

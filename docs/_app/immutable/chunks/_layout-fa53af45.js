@@ -1,0 +1,1 @@
+const a=!1,t=!1,e="always",s={base:"/svelte-ionic-base"},r=Object.freeze(Object.defineProperty({__proto__:null,ssr:!1,prerender:!1,trailingSlash:e,paths:s},Symbol.toStringTag,{value:"Module"}));export{r as _,s as a,t as p,a as s,e as t};
