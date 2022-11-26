@@ -10,8 +10,8 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			pages: 'docs', // was build, but we want to deploy to GitHub Pages
-			assets: 'docs', // was build, but we want to deploy to GitHub Pages
+			pages: 'build',
+			assets: 'build',
 			fallback: 'index.html',
 			precompress: false
 		}),
