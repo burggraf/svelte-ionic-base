@@ -1,11 +1,14 @@
 {
   "name": "svelte-ionic-base",
+  "short_name": "Base",
   "description": "SvelteKit + Ionic",
   "version": "0.0.3",
   "private": true,
   "homepage": "https://svelte-ionic-base.pages.dev",
   "menu_title": "Svelte Ionic",
   "menu_subtitle": "SvelteKit + Ionic",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "profileTable": "profile",
   "profileKey": "userid",
   "repository": {
