@@ -2,7 +2,7 @@
   "name": "svelte-ionic-base",
   "short_name": "Base",
   "description": "SvelteKit + Ionic",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "homepage": "https://svelte-ionic-base.pages.dev",
   "menu_title": "Svelte Ionic",
