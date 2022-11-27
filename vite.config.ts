@@ -28,7 +28,8 @@ const config: UserConfig = {
 		'__APP_PROFILE_TABLE__': JSON.stringify(pkg.profileTable),
 		'__APP_PROFILE_KEY__': JSON.stringify(pkg.profileKey),
 		'__APP_THEME_COLOR__': JSON.stringify(pkg.theme_color),
-		'__APP_BACKGROUND_COLOR__': JSON.stringify(pkg.background_color),	  }	
+		'__APP_BACKGROUND_COLOR__': JSON.stringify(pkg.background_color),	  
+	}	
 };
 
 export default config;
