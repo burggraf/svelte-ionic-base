@@ -41,7 +41,7 @@
 	const appPages: Array<{ title: string, url: string; requireLogin: boolean; icon: any }> = [
 		{ title: 'Profile', url: '/profile', icon: allIonicIcons.personOutline, requireLogin: true },
 		{ title: 'Settings', url: '/settings', icon: allIonicIcons.settingsOutline, requireLogin: false },
-		{ title: 'Info', url: '/info', icon: allIonicIcons.informationCircle, requireLogin: false },
+		{ title: 'Info', url: '/info', icon: allIonicIcons.informationCircleOutline, requireLogin: false },
 	]
 
 	const closeAndNavigate = async (url: string) => {
